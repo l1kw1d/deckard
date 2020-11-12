@@ -180,9 +180,9 @@ class TestServer:
 
         for srv_sock in self.srv_socks:
             if (srv_sock.family == family
-                    and srv_sock.getsockname() == address
+                    and srv_sock.getsockname()[:2] == address
                     and srv_sock.proto == proto):
-                return srv_sock.getsockname()
+                return
 
         sock = socket.socket(family, socktype, proto)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -195,25 +195,23 @@ class TestServer:
         # A lot of addresses are added to the interface while runnning from Deckard in
         # the small amount of time which caused ocassional hiccups while binding to them
         # right afterwards in testing. Therefore, we retry a few times.
-        ex = None
+        final_ex = None
         for i in range(self.RETRIES_ON_BIND):
             try:
                 sock.bind(address)
                 break
-            except OSError as e:
+            except OSError as ex:
                 # Exponential backoff
                 time.sleep((2 ** i) + random.random())
-                ex = e
+                final_ex = ex
                 continue
         else:
-            print(ex, address)
-            raise ex
+            print(final_ex, address)
+            raise final_ex
 
         if proto == socket.IPPROTO_TCP:
             sock.listen(5)
         self.srv_socks.append(sock)
-        sockname = sock.getsockname()
-        return sockname, proto
 
     def _bind_sockets(self):
         """
