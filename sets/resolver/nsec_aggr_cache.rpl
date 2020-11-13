@@ -1,8 +1,8 @@
-; skip: yes
 	trust-anchor: ". IN DS 19036 8 2 49AAC11D7B6F6446702E54A1607371607A1A41855200FD2CE1CDDE32F24E8FB5"
 	trust-anchor: ". IN DS 20326 8 2 E06D44B80B8F1D39A95C0B0D7C65D08458E880409BBC683457104237C7F8EC8D"
 	val-override-date: 20180727184403
 	stub-addr: 2001:7fe::53
+	do-ip4: no
 CONFIG_END
 
 SCENARIO_BEGIN qlist
@@ -81,6 +81,9 @@ SECTION ADDITIONAL
 ns1.registry.hm. 172800 IN A 208.70.79.25
 ns2.registry.hm. 172800 IN A 208.70.79.24
 ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
@@ -100,6 +103,9 @@ SECTION ADDITIONAL
 ns1.registry.hm. 172800 IN A 208.70.79.25
 ns2.registry.hm. 172800 IN A 208.70.79.24
 ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
@@ -119,6 +125,9 @@ SECTION ADDITIONAL
 ns1.registry.hm. 172800 IN A 208.70.79.25
 ns2.registry.hm. 172800 IN A 208.70.79.24
 ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
@@ -2418,6 +2427,9 @@ SECTION ADDITIONAL
 ns1.registry.hm. 172800 IN A 208.70.79.25
 ns2.registry.hm. 172800 IN A 208.70.79.24
 ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
@@ -5771,6 +5783,9 @@ RANGE_BEGIN 0 1000
 	ADDRESS 208.70.79.24
 	ADDRESS 208.70.79.25
 	ADDRESS 128.199.180.188
+	ADDRESS 1::1
+	ADDRESS 1::2
+	ADDRESS 1::3
 
 ENTRY_BEGIN
 MATCH qname  qtype
@@ -5818,9 +5833,12 @@ registry.hm. 86400 IN NS ns1.registry.hm.
 registry.hm. 86400 IN NS ns2.registry.hm.
 registry.hm. 86400 IN NS ns3.registry.hm.
 SECTION ADDITIONAL
-ns1.registry.hm. 86400 IN A 208.70.79.25
-ns2.registry.hm. 86400 IN A 208.70.79.24
-ns3.registry.hm. 86400 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN A 208.70.79.25
+ns2.registry.hm. 172800 IN A 208.70.79.24
+ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
@@ -5859,8 +5877,12 @@ registry.hm. 86400 IN NS ns1.registry.hm.
 registry.hm. 86400 IN NS ns2.registry.hm.
 registry.hm. 86400 IN NS ns3.registry.hm.
 SECTION ADDITIONAL
-ns2.registry.hm. 86400 IN A 208.70.79.24
-ns3.registry.hm. 86400 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN A 208.70.79.25
+ns2.registry.hm. 172800 IN A 208.70.79.24
+ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
@@ -5904,7 +5926,7 @@ REPLY QR AA RD NOERROR
 SECTION QUESTION
 ns1.registry.hm. IN AAAA
 SECTION AUTHORITY
-registry.hm. 3600 IN SOA ns1.registry.hm. hostmaster.registry.hm. 2015072302 10800 3600 604800 3600
+ns1.registry.hm. 86400 IN AAAA 1::1
 ENTRY_END
 
 
@@ -5921,9 +5943,12 @@ hm. 86400 IN NS ns1.registry.hm.
 hm. 86400 IN NS ns2.registry.hm.
 hm. 86400 IN NS ns3.registry.hm.
 SECTION ADDITIONAL
-ns1.registry.hm. 86400 IN A 208.70.79.25
-ns2.registry.hm. 86400 IN A 208.70.79.24
-ns3.registry.hm. 86400 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN A 208.70.79.25
+ns2.registry.hm. 172800 IN A 208.70.79.24
+ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
@@ -5940,8 +5965,12 @@ registry.hm. 86400 IN NS ns1.registry.hm.
 registry.hm. 86400 IN NS ns2.registry.hm.
 registry.hm. 86400 IN NS ns3.registry.hm.
 SECTION ADDITIONAL
-ns1.registry.hm. 86400 IN A 208.70.79.25
-ns3.registry.hm. 86400 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN A 208.70.79.25
+ns2.registry.hm. 172800 IN A 208.70.79.24
+ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
@@ -5985,7 +6014,7 @@ REPLY QR AA RD NOERROR
 SECTION QUESTION
 ns2.registry.hm. IN AAAA
 SECTION AUTHORITY
-registry.hm. 3600 IN SOA ns1.registry.hm. hostmaster.registry.hm. 2015072302 10800 3600 604800 3600
+ns2.registry.hm. 86400 IN AAAA 1::2
 ENTRY_END
 
 
@@ -6002,8 +6031,12 @@ registry.hm. 86400 IN NS ns1.registry.hm.
 registry.hm. 86400 IN NS ns2.registry.hm.
 registry.hm. 86400 IN NS ns3.registry.hm.
 SECTION ADDITIONAL
-ns1.registry.hm. 86400 IN A 208.70.79.25
-ns2.registry.hm. 86400 IN A 208.70.79.24
+ns1.registry.hm. 172800 IN A 208.70.79.25
+ns2.registry.hm. 172800 IN A 208.70.79.24
+ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
@@ -6047,7 +6080,7 @@ REPLY QR AA RD NOERROR
 SECTION QUESTION
 ns3.registry.hm. IN AAAA
 SECTION AUTHORITY
-registry.hm. 3600 IN SOA ns1.registry.hm. hostmaster.registry.hm. 2015072302 10800 3600 604800 3600
+ns3.registry.hm. 86400 IN AAAA 1::3
 ENTRY_END
 
 
@@ -6073,9 +6106,12 @@ registry.hm. 86400 IN NS ns1.registry.hm.
 registry.hm. 86400 IN NS ns2.registry.hm.
 registry.hm. 86400 IN NS ns3.registry.hm.
 SECTION ADDITIONAL
-ns1.registry.hm. 86400 IN A 208.70.79.25
-ns2.registry.hm. 86400 IN A 208.70.79.24
-ns3.registry.hm. 86400 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN A 208.70.79.25
+ns2.registry.hm. 172800 IN A 208.70.79.24
+ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
@@ -6090,9 +6126,12 @@ hm. 86400 IN NS ns1.registry.hm.
 hm. 86400 IN NS ns2.registry.hm.
 hm. 86400 IN NS ns3.registry.hm.
 SECTION ADDITIONAL
-ns1.registry.hm. 86400 IN A 208.70.79.25
-ns2.registry.hm. 86400 IN A 208.70.79.24
-ns3.registry.hm. 86400 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN A 208.70.79.25
+ns2.registry.hm. 172800 IN A 208.70.79.24
+ns3.registry.hm. 172800 IN A 128.199.180.188
+ns1.registry.hm. 172800 IN AAAA 1::1
+ns2.registry.hm. 172800 IN AAAA 1::2
+ns3.registry.hm. 172800 IN AAAA 1::3
 ENTRY_END
 
 
